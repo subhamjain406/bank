@@ -8,7 +8,7 @@ import { AppServiceService } from "./service/app-service.service";
 })
 export class AppComponent {
   title = "bank";
-  bankData: any;
+  bankData: any = '';
   selectedCity;
   gridApi;
   gridCoulumnApi;
@@ -21,8 +21,8 @@ export class AppComponent {
     setInterval(() => {
       this.ref.detectChanges()
     }, 1000);
-    this.getArray = localStorage.getItem('ifsc');
-    console.log(this.getArray);
+    // this.getArray = localStorage.getItem('ifsc/'+this.selectedCity);
+    // console.log(this.getArray);
     this.rowSelection = "multiple";
   }
   columnDefs = [
@@ -44,6 +44,7 @@ export class AppComponent {
 
 
   cityChange(event) {
+    this.getArray = localStorage.getItem('ifsc/'+event.target.value);
     this.selectedCity = event.target.value;
     this.appService
       .getData(this.selectedCity)
@@ -106,6 +107,6 @@ export class AppComponent {
     // this.bankData= abc;
     // console.log('c', this.bankData);
 
-    localStorage.setItem("ifsc", JSON.stringify(this.selectedArray));
+    localStorage.setItem("ifsc/"+this.selectedCity, JSON.stringify(this.selectedArray));
   }
 }
