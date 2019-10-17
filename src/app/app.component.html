@@ -8,11 +8,11 @@
     <div class="col-md-4">
       <label for="city">City:</label>
       <select class="form-control" (change)="cityChange($event)" id="city">
-        <option value="kolkata">Kolkata</option>
-        <option value="bangalore">Bangalore</option>
-        <option value="mumbai">Mumbai</option>
-        <option value="delhi">Delhi</option>
-        <option value="pune">Pune</option>
+        <option value="KOLKATA">Kolkata</option>
+        <option value="BANGALORE">Bangalore</option>
+        <option value="MUMBAI">Mumbai</option>
+        <option value="PUNE">Pune</option>
+        <option value="CHENNAI">Chennai</option>
       </select>
     </div>
     <div class="col-md-4">
@@ -28,7 +28,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div *ngIf="(selectedCity === 'mumbai'); else default">
+      <div *ngIf="(bankData != ''); else default">
         <ag-grid-angular 
         style="width: 1500px; height: 500px;" 
         class="ag-theme-balham"

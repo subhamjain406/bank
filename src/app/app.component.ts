@@ -23,21 +23,6 @@ export class AppComponent {
     }, 1000);
     this.getArray = localStorage.getItem('ifsc');
     console.log(this.getArray);
-    this.appService
-      .getData()
-      .toPromise()
-      .then(data => {
-        this.bankData = data;
-        for(var i=0;i<this.bankData.length;i++){
-          if(this.getArray != null && this.getArray.indexOf(this.bankData[i].ifsc) > -1){
-            this.bankData[i].fav = true;
-          }
-          else{
-            this.bankData[i].fav = false;
-          }
-        }
-      })
-      .catch(error => console.log("error", error));
     this.rowSelection = "multiple";
   }
   columnDefs = [
@@ -60,6 +45,21 @@ export class AppComponent {
 
   cityChange(event) {
     this.selectedCity = event.target.value;
+    this.appService
+      .getData(this.selectedCity)
+      .toPromise()
+      .then(data => {
+        this.bankData = data;
+        for(var i=0;i<this.bankData.length;i++){
+          if(this.getArray != null && this.getArray.indexOf(this.bankData[i].ifsc) > -1){
+            this.bankData[i].fav = true;
+          }
+          else{
+            this.bankData[i].fav = false;
+          }
+        }
+      })
+      .catch(error => console.log("error", error));
   }
 
   onGridReady(params) {
