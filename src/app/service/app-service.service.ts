@@ -9,6 +9,6 @@ export class AppServiceService {
   constructor(private http : HttpClient) { }
 
   getData(){
-    return this.http.get('https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI');
+    return this.http.get('https://vast-shore-74260.herokuapp.com/banks?city='+ 'MUMBAI');
   }
 }
